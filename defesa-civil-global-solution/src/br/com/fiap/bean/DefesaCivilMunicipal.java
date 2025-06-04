@@ -39,6 +39,15 @@ public class DefesaCivilMunicipal {
         this.cursoPrincipal = cursoPrincipal;
     }
 
+    public Curso criarCurso(String nomeCurso, String tipo, String descricao, int cargaHoraria) {
+        Curso curso = new Curso();
+        curso.setNome(nomeCurso);
+        curso.setTipo(tipo);
+        curso.setDescricao(descricao);
+        curso.setCargaHoraria(cargaHoraria);
+        return curso;
+    }
+
     public Curso criarCurso(String nomeCurso, String tipo,String nomeModulo,String videoUrl, String conteudoTextual, String descricao, int cargaHoraria) {
         Curso curso = new Curso();
         Modulo modulo = new Modulo(nomeModulo,videoUrl,conteudoTextual);
@@ -51,25 +60,16 @@ public class DefesaCivilMunicipal {
         return curso;
     }
 
-    public Curso criarCurso(String nomeCurso, String tipo, String descricao, int cargaHoraria) {
-        Curso curso = new Curso();
-        curso.setNome(nomeCurso);
-        curso.setTipo(tipo);
-        curso.setDescricao(descricao);
-        curso.setCargaHoraria(cargaHoraria);
-        return curso;
-    }
-
     public void criarAvaliacao(Curso curso, String pergunta, String altA, String altB, String altC, String altD, String altCorreta) {
         try{
             if (curso != null) {
             Avaliacao avaliacao = new Avaliacao();
             avaliacao.setPergunta(pergunta);
-            avaliacao.setAlternativaA(altA);
-            avaliacao.setAlternativaB(altB);
-            avaliacao.setAlternativaC(altC);
-            avaliacao.setAlternativaD(altD);
-            avaliacao.setAlternativaCorreta(altCorreta);
+            avaliacao.setAlternativaA(altA.toLowerCase());
+            avaliacao.setAlternativaB(altB.toLowerCase());
+            avaliacao.setAlternativaC(altC.toLowerCase());
+            avaliacao.setAlternativaD(altD.toLowerCase());
+            avaliacao.setAlternativaCorreta(altCorreta.toLowerCase());
 
             curso.setAvaliacao(avaliacao);
 

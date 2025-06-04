@@ -45,7 +45,7 @@ public class Certificado {
     }
 
     public void setDataEmissao(LocalDate dataEmissao) {
-        this.dataEmissao = dataEmissao;
+        this.dataEmissao = LocalDate.now();
     }
 
 }

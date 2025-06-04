@@ -1,6 +1,7 @@
 package br.com.fiap.bean;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Pessoa {
     private String nomeCompleto;
@@ -82,7 +83,9 @@ public class Pessoa {
 
     // todo
     public void visualizarDadosBasicos(){
-        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+        String mensagem = String.format("Nome completo: %s \nData de Nascimento: %s \nE-mail: %s \nTelefone: %s \nMunicípio: %s \nOcupação: %s ", this.nomeCompleto, this.dataNascimento.format(dtf), this.email, this.telefone, this.municipio, this.ocupacao);
+        System.out.println(mensagem);
     }
 }

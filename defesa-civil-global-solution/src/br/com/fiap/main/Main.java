@@ -1,17 +1,45 @@
 package br.com.fiap.main;
 
-import br.com.fiap.bean.Certificado;
-import br.com.fiap.bean.Curso;
-import br.com.fiap.bean.DefesaCivilMunicipal;
-import br.com.fiap.bean.Voluntario;
+import br.com.fiap.bean.*;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Certificado certificado = new Certificado();
-        Voluntario voluntario = new Voluntario();
-        DefesaCivilMunicipal defesaCivil = new DefesaCivilMunicipal();
-        Curso curso = new Curso();
+        int opcao;
+        String escolha = "sim";
+        Scanner sc = new Scanner(System.in);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+        Pessoa agenteDefesaMogi;
+        Voluntario voluntarioMogi;
+        DefesaCivilMunicipal defesaMogi;
+        Curso cursoBasico, cursoIncendio;
+        Modulo moduloCursoBasico;
+        Avaliacao avaliacaoCursoBasico;
+        Certificado certificadoCursoBasico;
+
+        while (escolha.equalsIgnoreCase("sim")) {
+            try{
+
+                System.out.print("Escolha: ");
+                opcao = sc.nextInt();
+                switch (opcao) {
+                    case 1:
+                }
+
+
+
+
+                System.out.println("Deseja continuar? (sim/nao)");
+                escolha = sc.nextLine();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println("Obrigado por utilizar o programa!");
 
 
     }
