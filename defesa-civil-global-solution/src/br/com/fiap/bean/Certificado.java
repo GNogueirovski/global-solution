@@ -12,7 +12,7 @@ public class Certificado {
 
     public Certificado(Curso curso, Voluntario voluntario) {
         this.curso = curso;
-        setVoluntario(voluntario);
+        this.voluntario = voluntario;
         this.dataEmissao = LocalDate.now();
     }
 
@@ -29,15 +29,7 @@ public class Certificado {
     }
 
     public void setVoluntario(Voluntario voluntario) {
-        try{
-            if (voluntario.isAprovadoEmAvaliacao()) {
-                this.voluntario = voluntario;
-            }else {
-                throw new Exception("O voluntário precisa estar aprovado na Avaliação do curso, para receber um certificado");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        this.voluntario = voluntario;
     }
 
     public LocalDate getDataEmissao() {
@@ -45,7 +37,7 @@ public class Certificado {
     }
 
     public void setDataEmissao(LocalDate dataEmissao) {
-        this.dataEmissao = LocalDate.now();
+        this.dataEmissao  = dataEmissao;
     }
 
 }

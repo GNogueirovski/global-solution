@@ -81,11 +81,9 @@ public class Curso {
         this.avaliacao = avaliacao;
     }
 
-    public void adicionarModulo(String nome,String videoUrl, String conteudoTextual) {
-        Modulo modulo;
+    public void adicionarModulo(Modulo modulo) {
         try {
             if(this.modulo == null){
-                modulo = new Modulo(nome,videoUrl,conteudoTextual);
                 this.modulo = modulo;
             } else {
                 throw new Exception("O curso já tem um módulo");

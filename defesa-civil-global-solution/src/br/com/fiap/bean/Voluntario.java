@@ -4,7 +4,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class Voluntario extends Pessoa {
+public class Voluntario {
+    private String nomeCompleto;
+    private String cpf;
+    private LocalDate dataNascimento;
+    private String email;
+    private String telefone;
+    private String ocupacao;
     private String habilidade;
     private Curso curso;
     private Certificado certificado;
@@ -13,12 +19,62 @@ public class Voluntario extends Pessoa {
     public Voluntario() {
     }
 
-    public Voluntario(String nomeCompleto, String cpf, LocalDate dataNascimento, String email, String telefone, String ocupacao, String municipio, String habilidade) {
-        super(nomeCompleto, cpf, dataNascimento, email, telefone, ocupacao, municipio);
+    public Voluntario(String nomeCompleto, String cpf, LocalDate dataNascimento, String email, String telefone, String ocupacao, String habilidade) {
+        this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.telefone = telefone;
+        this.ocupacao = ocupacao;
         this.habilidade = habilidade;
-        this.curso = null;
-        this.certificado = null;
-        this.aprovadoEmAvaliacao = false;
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getOcupacao() {
+        return ocupacao;
+    }
+
+    public void setOcupacao(String ocupacao) {
+        this.ocupacao = ocupacao;
     }
 
     public String getHabilidade() {
@@ -53,41 +109,38 @@ public class Voluntario extends Pessoa {
         this.aprovadoEmAvaliacao = aprovadoEmAvaliacao;
     }
 
-    // todo
-    public void visualizarDadosBasicos() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        super.visualizarDadosBasicos();
-        System.out.printf("Habilidade: %s\n", this.habilidade);
-        if (this.curso != null) {
-        if (aprovadoEmAvaliacao) {
-            System.out.printf("Curso concluído: %s\n", this.curso.getNome());
-            System.out.printf("Certificado emitido em: %s", certificado.getDataEmissao().format(dtf));
-        }else {
-            System.out.printf("Curso em progresso: %s\n", curso.getNome());
-            System.out.println("Avaliação pendente do curso");
-        }
-        } else {
-            System.out.println("Voluntário ainda não está associado a nenhum curso");
-        }
-    }
-
-    public boolean realizaAvaliacaoCurso(String resposta) {
+    public void realizaAvaliacaoCurso(String resposta) {
         if(curso != null && curso.getAvaliacao() != null){
            boolean passou = curso.getAvaliacao().verificarResposta(resposta);
            if(passou){
-               System.out.printf("Parabéns, você foi aprovado na avaliação do curso %s", curso.getNome());
+               System.out.printf("Parabéns, você foi aprovado na avaliação do %s\nSeu certificado será disponibilizado quando a Defesa Civil fizer a emissão\n", curso.getNome());
                aprovadoEmAvaliacao = true;
-               return true;
            } else {
-               System.out.printf("Infelizmente, você não foi aprovado na avaliação do curso %s", curso.getNome());
+               System.out.printf("Infelizmente, você não foi aprovado na avaliação do %s\n Revise o conteúdo e tente novamente!\n", curso.getNome());
                aprovadoEmAvaliacao = false;
-               return false;
            }
         } else {
-            System.out.println("Não é possível a realizar a avaliação de um curso que não existe");
+            System.out.println("Não é possível a realizar a avaliação de um curso que o voluntário não está registrado\n");
             aprovadoEmAvaliacao = false;
-            return false;
+        }
+    }
+
+    public void visualizarCertificado (){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try{
+            if (aprovadoEmAvaliacao) {
+                if(certificado != null){
+                    System.out.printf("Curso: %s\n", curso.getNome());
+                    System.out.printf("Voluntário: %s\n", getNomeCompleto());
+                    System.out.printf("Emitido em: %s\n", certificado.getDataEmissao().format(dtf));
+                }else {
+                    throw new Exception("O certificado ainda precisa ser emitido pela Defesa Civil para ser visualizado");
+                }
+            } else {
+                throw new Exception("O voluntário ainda precisa passar pela avaliação do curso para receber o certificado.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }
