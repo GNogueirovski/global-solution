@@ -1,5 +1,10 @@
 package br.com.fiap.bean;
 
+/**
+ * Classe responsável pelo armazenamento do curso, contendo um módulo (conteúdo ministrado) e uma avaliação,
+ * que será responsável por aprovar o voluntário no curso.
+ * @version 1.0
+ */
 public class Curso {
     private String nome;
     private String tipo;
@@ -81,12 +86,15 @@ public class Curso {
         this.avaliacao = avaliacao;
     }
 
+    /**
+     * Metodo responsável por adicionar um módulo já construído ao curso
+     */
     public void adicionarModulo(Modulo modulo) {
         try {
             if(this.modulo == null){
                 this.modulo = modulo;
             } else {
-                throw new Exception("O curso já tem um módulo");
+                throw new Exception("O curso já possui um módulo");
             }
 
         } catch (Exception e) {

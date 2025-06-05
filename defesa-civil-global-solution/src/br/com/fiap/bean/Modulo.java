@@ -1,5 +1,9 @@
 package br.com.fiap.bean;
 
+/**
+ * Classe que representa um módulo, que é o conteúdo a ser ministrado no curso.
+ * @version 1.0
+ */
 public class Modulo {
     private String nome;
     private String videoUrl;

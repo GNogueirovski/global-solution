@@ -2,6 +2,12 @@ package br.com.fiap.bean;
 
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Classe que representa a Defesa Civil Municipal e filha de Município.
+ * É responsável pela criação de curso, avaliação, emissão de certificado e
+ * registro de voluntários aptos para emergências.
+ * @version 1.0
+ */
 public class DefesaCivilMunicipal extends Municipio {
     private String nomeAgenteResponsavel;
     private Curso cursoPrincipal;
@@ -30,6 +36,11 @@ public class DefesaCivilMunicipal extends Municipio {
         this.cursoPrincipal = cursoPrincipal;
     }
 
+
+    /**
+     * Metodo que faz o registro do voluntário apto, que fizeram o curso e a avaliação
+     * e atribui a Defesa Civil Municipal.
+     */
     @Override
     public void registrarVoluntario(Voluntario voluntario) {
         try{
@@ -54,6 +65,10 @@ public class DefesaCivilMunicipal extends Municipio {
         }
     }
 
+    /**
+     * Metodo que cria um curso no seu estado mais básico, ainda precisando adicionar módulo e avaliação.
+     * @return faz o retorno de um curso para ser atribuído à Defesa Civil
+     */
     public Curso criarCurso(String nomeCurso, String tipo, String descricao, int cargaHoraria) {
         Curso curso = new Curso();
         curso.setNome(nomeCurso);
@@ -63,6 +78,10 @@ public class DefesaCivilMunicipal extends Municipio {
         return curso;
     }
 
+    /**
+     * Metodo que cria um curso completo que ainda está pendente de uma avaliação.
+     * @return faz o retorno de um curso para ser atribuído à Defesa Civil
+     */
     public Curso criarCurso(String nomeCurso, String tipo,String nomeModulo,String videoUrl, String conteudoTextual, String descricao, int cargaHoraria) {
         Curso curso = new Curso();
         Modulo modulo = new Modulo(nomeModulo,videoUrl,conteudoTextual);
@@ -75,6 +94,10 @@ public class DefesaCivilMunicipal extends Municipio {
         return curso;
     }
 
+    /**
+     * Metodo que cria uma avaliação para um curso, com a pergunta, as respectivas alternativas e qual é a correta.
+     * @return Retorna uma avaliação que será atribuida a um curso da Defesa Civil
+     */
     public Avaliacao criarAvaliacao(Curso curso, String pergunta, String altA, String altB, String altC, String altD, String altCorreta) {
         try{
             if (curso != null) {
@@ -99,6 +122,9 @@ public class DefesaCivilMunicipal extends Municipio {
     }
 
 
+    /**
+     * Metodo que emite de um certificado de um voluntário que foi aprovado na avaliação de um curso
+     */
     public void emitirCertificado(Curso curso, Voluntario voluntario) {
         Certificado certificado;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");

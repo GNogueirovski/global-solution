@@ -1,5 +1,9 @@
 package br.com.fiap.bean;
 
+/**
+ * Classe que representa um município com dados básicos, inclusive de tipo de risco sucetivel e voluntario (de qualquer natureza)
+ * @version 1.0
+ */
 public class Municipio {
     private String nome;
     private String estado;
@@ -47,6 +51,9 @@ public class Municipio {
         this.voluntario = voluntario;
     }
 
+    /**
+     * Metodo que faz o registro do voluntário de qualquer natureza, que se disponibilizaram para o município.
+     */
     public void registrarVoluntario (Voluntario voluntario){
         try{
             if (voluntario != null) {

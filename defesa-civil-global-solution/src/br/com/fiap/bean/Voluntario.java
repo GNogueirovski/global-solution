@@ -2,8 +2,11 @@ package br.com.fiap.bean;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
+/**
+ * Classe que representa um voluntário, com seus dados básicos, curso inscrito e se aprovado em avalição do curso, um certificado.
+ * @version 1.0
+ */
 public class Voluntario {
     private String nomeCompleto;
     private String cpf;
@@ -109,22 +112,30 @@ public class Voluntario {
         this.aprovadoEmAvaliacao = aprovadoEmAvaliacao;
     }
 
+    /**
+     * Metodo que faz a realização da avaliação de um curso. Se a resposta estiver correta, o usuário já estará pronto para
+     * receber um certificado e ser incluído como voluntário válido da defesa civil
+     */
     public void realizaAvaliacaoCurso(String resposta) {
-        if(curso != null && curso.getAvaliacao() != null){
+        if(curso.getModulo() != null && curso.getAvaliacao() != null){
            boolean passou = curso.getAvaliacao().verificarResposta(resposta);
            if(passou){
                System.out.printf("Parabéns, você foi aprovado na avaliação do %s\nSeu certificado será disponibilizado quando a Defesa Civil fizer a emissão\n", curso.getNome());
                aprovadoEmAvaliacao = true;
            } else {
-               System.out.printf("Infelizmente, você não foi aprovado na avaliação do %s\n Revise o conteúdo e tente novamente!\n", curso.getNome());
+               System.out.printf("Infelizmente, você não foi aprovado na avaliação do %s\nRevise o conteúdo e tente novamente!\n", curso.getNome());
                aprovadoEmAvaliacao = false;
            }
         } else {
-            System.out.println("Não é possível a realizar a avaliação de um curso que o voluntário não está registrado\n");
+            System.out.println("Não é possível a realizar a avaliação de um curso que não possuí módulo\n");
             aprovadoEmAvaliacao = false;
         }
     }
 
+    /**
+     * Metodo para visualização de um certificado após a avaliação de um curso do voluntário. O certificado precisa
+     * ser emitido pela Defesa Civil para ser visualizado.
+     */
     public void visualizarCertificado (){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try{

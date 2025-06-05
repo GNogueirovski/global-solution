@@ -2,6 +2,10 @@ package br.com.fiap.bean;
 
 import java.time.LocalDate;
 
+/**
+ * Classe responsável pela modelagem do certificado do voluntário
+ * @version 1.0
+ */
 public class Certificado {
     private Curso curso;
     private Voluntario voluntario;

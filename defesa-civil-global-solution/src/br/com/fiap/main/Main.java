@@ -3,7 +3,6 @@ package br.com.fiap.main;
 import br.com.fiap.bean.*;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -37,11 +36,10 @@ public class Main {
         avaliacaoCursoBasico = defesaPortoAlegre.criarAvaliacao(cursoBasico, "Qual é a primeira atitude recomendada para um voluntário ao chegar a uma área afetada por enchente?","A) Entrar na água para resgatar vítimas", "B) Aguardar orientação das autoridades locais", "C) Distribuir alimentos por conta própria", "D) Registrar a situação nas redes sociais", "b");
 
 
-
         while (escolha.equalsIgnoreCase("sim")) {
             try{
 
-                System.out.print("Olá, seja bem-vindo ao Sistema de Voluntários da Defesa Civil \n1) Menu da Defesa Civil \n2) Menu do Voluntário\n\n");
+                System.out.print("Bem-vindo ao Sistema de Voluntários da Defesa Civil \nEscolha o menu para acessar correspondente ao seu perfil: \n1) Menu da Defesa Civil \n2) Menu do Voluntário\n\n");
                 System.out.print("Escolha:");
                 opcao = sc.nextInt();
                 sc.nextLine();
@@ -86,7 +84,8 @@ public class Main {
                         sc.nextLine();
                         switch (menuInterno) {
                             case 1:
-                                System.out.printf("Seja Bem-vindo a avaliação do curso %s\n\n", cursoBasico.getNome());
+                                if (cursoBasico.getModulo() != null) {
+                                System.out.printf("Seja Bem-vindo a avaliação do %s\n\n", cursoBasico.getNome());
                                 System.out.printf("Pergunta: %s\n",cursoBasico.getAvaliacao().getPergunta());
                                 System.out.println("Alternativas: ");
                                 System.out.println(cursoBasico.getAvaliacao().getAlternativaA());
@@ -96,6 +95,9 @@ public class Main {
                                 System.out.println("Selecione a alternativa (apenas letra): ");
 
                                 voluntarioPortoAlegre.realizaAvaliacaoCurso(sc.nextLine());
+                                } else{
+                                    throw new Exception("Não é possível fazer a avaliação de um curso sem módulo atribuído\n");
+                                }
                                 break;
                             case 2:
                                 voluntarioPortoAlegre.visualizarCertificado();

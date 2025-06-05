@@ -1,5 +1,10 @@
 package br.com.fiap.bean;
 
+/**
+ * Classe responsável pela criação de uma avaliação, que servirá para realizar a pergunta, exibir as alternativas
+ * e validar se o usuário acertou
+ * @version 1.0
+ */
 public class Avaliacao {
     private String pergunta;
     private String alternativaA;
@@ -68,6 +73,9 @@ public class Avaliacao {
         this.alternativaCorreta = alternativaCorreta;
     }
 
+    /**
+     * Metodo que verifica a resposta do usuário e retorna um booleano se acertou a pergunta ou não
+     */
     public boolean verificarResposta(String resposta) {
         return resposta.equalsIgnoreCase(getAlternativaCorreta());
        }
