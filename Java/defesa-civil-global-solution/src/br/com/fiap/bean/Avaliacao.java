@@ -12,6 +12,7 @@ public class Avaliacao {
     private String alternativaC;
     private String alternativaD;
     private String alternativaCorreta;
+    private boolean acertou;
 
     public Avaliacao() {
     }
@@ -70,14 +71,32 @@ public class Avaliacao {
     }
 
     public void setAlternativaCorreta(String alternativaCorreta) {
-        this.alternativaCorreta = alternativaCorreta;
+        try{
+            if (alternativaCorreta.equalsIgnoreCase("A") || alternativaCorreta.equalsIgnoreCase("B")|| alternativaCorreta.equalsIgnoreCase("C")|| alternativaCorreta.equalsIgnoreCase("D")){
+                this.alternativaCorreta = alternativaCorreta;
+            }else {
+                throw new Exception("Insira apenas a letra da alternativa correta");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public boolean isAcertou() {
+        return acertou;
+    }
+
+    public void setAcertou(boolean acertou) {
+        this.acertou = acertou;
     }
 
     /**
-     * Metodo que verifica a resposta do usuário e retorna um booleano se acertou a pergunta ou não
+     * Metodo que verifica a resposta do usuário e muda o estado de acertouPergunta para true
      */
-    public boolean verificarResposta(String resposta) {
-        return resposta.equalsIgnoreCase(getAlternativaCorreta());
+    public void verificarResposta(String resposta) {
+        if (resposta.equalsIgnoreCase(getAlternativaCorreta())){
+            setAcertou(true);
+        }
        }
     }
 

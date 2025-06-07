@@ -5,25 +5,17 @@ package br.com.fiap.bean;
  * que será responsável por aprovar o voluntário no curso.
  * @version 1.0
  */
-public class Curso {
+public class CursoBasico {
     private String nome;
     private String tipo;
     private String descricao;
     private Modulo modulo;
     private int cargaHoraria;
-    private Avaliacao avaliacao;
 
-    public Curso() {
-    }
-    public Curso(String nome, String tipo, String descricao, int cargaHoraria) {
-        this.nome = nome;
-        this.tipo = tipo;
-        this.descricao = descricao;
-        setCargaHoraria(cargaHoraria);
+    public CursoBasico() {
     }
 
-
-    public Curso(String nome, String tipo, String descricao, Modulo modulo, int cargaHoraria) {
+    public CursoBasico(String nome, String tipo, String descricao, Modulo modulo, int cargaHoraria) {
         this.nome = nome;
         this.tipo = tipo;
         this.descricao = descricao;
@@ -78,27 +70,14 @@ public class Curso {
         }
     }
 
-    public Avaliacao getAvaliacao() {
-        return avaliacao;
-    }
-
-    public void setAvaliacao(Avaliacao avaliacao) {
-        this.avaliacao = avaliacao;
-    }
-
-    /**
-     * Metodo responsável por adicionar um módulo já construído ao curso
-     */
-    public void adicionarModulo(Modulo modulo) {
-        try {
-            if(this.modulo == null){
-                this.modulo = modulo;
-            } else {
-                throw new Exception("O curso já possui um módulo");
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+    //todo
+    public boolean concluirCurso(Voluntario voluntario) {
+        Certificado certificado;
+        if (voluntario.getCertificadoCursoBasico() == null) {
+            certificado = new Certificado(this.nome, voluntario);
+            voluntario.setCertificadoCursoBasico(certificado);
+            return true;
         }
+        return false;
     }
 }

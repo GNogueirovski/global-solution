@@ -7,25 +7,25 @@ import java.time.LocalDate;
  * @version 1.0
  */
 public class Certificado {
-    private Curso curso;
+    private String nomeCurso;
     private Voluntario voluntario;
     private LocalDate dataEmissao;
 
     public Certificado() {
     }
 
-    public Certificado(Curso curso, Voluntario voluntario) {
-        this.curso = curso;
+    public Certificado(String nomeCurso, Voluntario voluntario) {
+        this.nomeCurso = nomeCurso;
         this.voluntario = voluntario;
         this.dataEmissao = LocalDate.now();
     }
 
-    public Curso getCurso() {
-        return curso;
+    public String getNomeCurso() {
+        return nomeCurso;
     }
 
-    public void setCurso(Curso curso) {
-        this.curso = curso;
+    public void setNomeCurso(String nomeCurso) {
+        this.nomeCurso = nomeCurso;
     }
 
     public Voluntario getVoluntario() {
@@ -41,7 +41,6 @@ public class Certificado {
     }
 
     public void setDataEmissao(LocalDate dataEmissao) {
-        this.dataEmissao  = dataEmissao;
+        this.dataEmissao = dataEmissao;
     }
-
 }
